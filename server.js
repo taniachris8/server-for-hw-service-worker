@@ -11,7 +11,7 @@ const logger = pino(pinoPretty());
 app.use(cors());
 app.use(express.json());
 app.use("/img", express.static("img"));
-app.use(slow({ delay: 10000 }));
+app.use(slow({ delay: 3000 }));
 
 function createRandomNews() {
   return {
