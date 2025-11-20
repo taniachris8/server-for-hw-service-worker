@@ -2,9 +2,8 @@ import express from "express";
 import cors from "cors";
 import pino from "pino";
 import pinoPretty from "pino-pretty";
-import * as crypto from "crypto";
 import { faker } from "@faker-js/faker";
-
+import slow from "connect-slow";
 
 const app = express();
 const logger = pino(pinoPretty());
@@ -12,6 +11,7 @@ const logger = pino(pinoPretty());
 app.use(cors());
 app.use(express.json());
 app.use("/img", express.static("img"));
+app.use(slow({ url: "/news", delay: 10000 }));
 
 function createRandomNews() {
   return {
